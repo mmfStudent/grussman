@@ -59,6 +59,12 @@ grails.exceptionresolver.params.exclude = ['password']
 // enable query caching by default
 grails.hibernate.cache.queries = true
 
+grails.app.context="/"
+
+grails.sitemesh.default.layout = 'main'
+
+grails.gorm.failOnError = true // for fatalError  on fail in GORM
+
 // set per-environment serverURL stem for creating absolute links
 environments {
     development {
@@ -97,13 +103,14 @@ grails.plugins.springsecurity.password.algorithm='SHA-512'
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'by.grussman.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'by.grussman.UserRole'
 grails.plugins.springsecurity.authority.className = 'by.grussman.Role'
+grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"       //may be change to anatation method
 
 
 grails.plugins.springsecurity.interceptUrlMap = [
-        '/dbconsole/*':         ['IS_AUTHENTICATED_ANONYMOUSLY'],     //todo Development scope
+        '/dbconsole/*':         ['IS_AUTHENTICATED_ANONYMOUSLY'],     //Development scope for db console
         '/js/**':               ['IS_AUTHENTICATED_ANONYMOUSLY'],
         '/css/**':              ['IS_AUTHENTICATED_ANONYMOUSLY'],
-        '/img/**':              ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/images/**':           ['IS_AUTHENTICATED_ANONYMOUSLY'],
         '/*':                   ['IS_AUTHENTICATED_ANONYMOUSLY'],
         '/login/**':            ['IS_AUTHENTICATED_ANONYMOUSLY'],
         '/logout/**':           ['IS_AUTHENTICATED_ANONYMOUSLY'],
